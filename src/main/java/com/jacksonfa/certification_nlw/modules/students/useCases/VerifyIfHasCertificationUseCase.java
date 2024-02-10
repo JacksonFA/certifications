@@ -7,16 +7,16 @@ import com.jacksonfa.certification_nlw.modules.students.dto.VerifyHasCertificati
 import com.jacksonfa.certification_nlw.modules.students.repositories.CertificationStudentRepository;
 
 @Service
-public class VerifyHasCertificationUseCase {
+public class VerifyIfHasCertificationUseCase {
 
   @Autowired
   private CertificationStudentRepository certificationStudentRepository;
   
   public boolean execute(VerifyHasCertificationDTO dto) {
     var result = this.certificationStudentRepository.findByStudentEmailAndTechnology(dto.getEmail(), dto.getTechnology());
-    if(!result.isEmpty()) {
-      return true;
+    if(result.isEmpty()) {
+      return false;
     }
-    return false;
+    return true;
   }
 }
